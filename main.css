@@ -1,0 +1,354 @@
+* {
+    font-family: "Roboto", sans-serif;
+  }
+
+html, body {
+margin: 0;
+padding: 0;
+}
+  
+
+:root{
+    --background: rgb(9,9,9)
+}
+
+body{
+    background: rgb(244, 244, 244);
+    font-weight: 400;
+}
+
+
+/* nav style */
+
+header{
+background: var(--background);
+text-align: center;
+position: relative;
+/* fixed OVERFLOWS!?@?!? 
+relative works
+messy */
+/* width: auto; */
+z-index: 999;
+}
+
+.logo a {
+text-decoration: none;
+color: azure;
+
+}
+.logo a:hover {
+    color: red;
+}
+
+
+@media screen and (max-width: 767px) {
+.logo {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 40px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+}
+
+
+
+
+/* list */
+
+nav{
+    position: absolute;
+    /* this is relative to the header Fixed position currently */
+    text-align: left;
+    top: 100%; /* relative , underneath logo*/
+    left: 0;
+
+    background: var(--background);
+    width: 100%;
+
+    /* display: none; */
+
+    transform: scale(1, 0);
+    transform-origin: top;
+    transition: transform 400ms ease-in-out;
+
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li{
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+nav a{
+    color:azure;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+}
+
+nav a:hover{
+    color:#abc5db;
+}
+
+.nav-toggle{
+    display: none;
+}
+
+/* pseduo class 
+looking for a nav thats a sibling of toggle*/
+
+.nav-toggle:checked ~ nav{
+    /* display: block; */
+    transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+}
+
+
+/* hamburger */
+
+.nav-toggle-label{
+    position: absolute;
+    top: 0;
+    left:0;
+    margin-left: 1em;
+    /* border: 1px solid red; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: white;
+    height: 2px;
+    width: 2em;
+    border-radius: 8px;
+    position: relative; 
+    /* for the span */
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+.nav-toggle-label span::before{
+    bottom: 7px;
+}
+.nav-toggle-label span::after{
+    top: 7px;
+}
+/* end hamburger */
+
+
+@media screen and (min-width: 768px) {
+.nav-toggle-label{
+    display: none;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+}
+
+.logo {
+    /* grid-column: 2 / span 1; */
+    grid-column: 2 / 3;
+}
+
+    nav {
+        all: unset;        /* take the styles off */
+        grid-column: 3 /4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    nav ul{
+        display: flex;
+        /* border: 1px solid red; */
+    }
+    nav li {
+        margin-left: 3em;
+        margin-bottom: 0;
+    }
+    nav a {
+        opacity: 1;
+    }
+}
+
+
+/* body  */
+
+
+.hero{
+    color: #ABDBD9;
+}
+
+
+.featured{
+    height: 50vh;
+    /* width: 100%; */
+    background-color: cornflowerblue;
+    background-image: url(/images/theater_background.png);
+    background-repeat:no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+
+    display: flex; 
+    align-items: center; /*vertically */
+    justify-content: center; 
+}
+
+.ft-title{
+    color: white;
+    text-align: center;
+    font-size: 5vw;
+}
+
+
+
+.divider{
+    /* text-align: center; */
+    background-color: lightgray;
+
+    border-style: solid;
+    border-width: 2px;
+    border-radius:2px;
+    margin: 60px 15% 30px 15%;
+    /* max-width: 70%; */
+    /* margin: 10px 5% 50px 5%; */
+
+    padding: 0;
+    padding-left: 5%;
+    line-height: 0;
+
+}
+
+
+
+/* <!-- CONTENT --> */
+
+.content {
+/* display: flex; */
+flex-direction: column;
+align-items: center;
+
+gap: 20px;
+max-width: 50%;
+margin: 0 auto;
+}
+
+
+.show-post{
+/* background-color: rgb(184, 245, 179); */
+display: flex;
+/* flex-wrap: wrap;  */
+/* align-content: end; */
+align-items: center;
+gap: 50px;
+border-bottom: 2px solid #b87f6676;
+padding: 15px 0px;
+margin-bottom: 2%; /*space between articles*/
+
+}
+
+.show-info{
+flex-grow: 1;
+display: flex;
+flex-direction: column !important;
+/* padding-right: 43%; */
+}
+
+.show-image{
+display: flex;
+
+align-self: center;
+flex-wrap: wrap;
+position: relative;
+
+flex-shrink: 0;
+
+margin: 5px;
+}
+
+
+.show-button{
+display: flex;
+/* align-items: flex-end; */
+/* margin-top: 20px; */
+/* padding-left: 5%; */
+/* margin-left: auto; */
+}
+
+@media (max-width: 998px) {
+.show-post {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+}
+}
+
+.button {
+/* display: inline-block; */
+background-color: goldenrod;
+color: antiquewhite;
+
+border-style:inset;
+border-width: 2px;
+
+padding: 10px 20px;
+border-radius: 3px;
+text-decoration: none;
+font-size: 120%;
+}
+
+
+
+
+
+/* .bottom{
+    max-width: 85%;
+} */
+
+
+footer{
+    background-color: rgb(22, 22, 22);
+    width: auto;
+    margin: 50px 0 0 0;
+}
+
+#grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20%, 170px));
+    justify-content:space-evenly;
+    align-items:flex-start;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+    height: auto;
+}
+
+.grid-item{
+    padding: 50px 4px 20px 1px;
+    text-align: left;
+    word-wrap: break-word;
+    color: whitesmoke;
+    width: auto;
+
+}
